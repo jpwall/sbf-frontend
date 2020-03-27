@@ -2,16 +2,23 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import { Search } from "react-find";
 import ReactDOM from "react-dom";
+import render from "react-dom";
 import axios from "axios";
+import {Router, Route} from 'react-router';
 import './App.css';
 
 class App extends Component {
-    state = {
-	error: null,
-	isLoaded: false,
-	courses: []
-    };
+    constructor (props) {
+	super(props);
+	this.state = {
+	    error: null,
+	    isLoaded: false,
+	    courses: []
+	};
 
+	this.CoursePageRedirect = this.CoursePageRedirect.bind(this);
+    }
+    
     componentDidMount() {
 	axios.get("/courses").then(
 	    result => {
@@ -29,17 +36,16 @@ class App extends Component {
 	);
     }
     
-    CoursePageRedirect() {
+    CoursePageRedirect(event) {
 	window.location.assign('/course');
     }
 
     render() {
-	//const courses = [];
 	const { error, isLoaded, courses } = this.state;
 	if (error) {
 	    return <div>Error: {error.message}</div>;
 	} else if (!isLoaded) {
-	    return <div>Loading...</div>;
+	    return <div>Loading courses...</div>;
 	} else {
 	    return (
 		    <div className="App">
