@@ -1,0 +1,21 @@
+{
+	"version": "0.2.0",
+	"configurations": [{
+			"type": "chrome",
+			"request": "launch",
+			"name": "Launch UI - Chrome",
+			"url": "http://localhost:3000",
+			"webRoot": "${workspaceRoot}",
+			"internalConsoleOptions": "openOnFirstSessionStart",
+			"preLaunchTask": "Start UI"
+		},
+		{
+			"type": "chrome",
+			"request": "attach",
+			"name": "Launch and Attach - Chrome",
+			"webRoot": "${workspaceRoot}",
+			"internalConsoleOptions": "openOnFirstSessionStart",
+			"preLaunchTask": "Start UI"
+		}
+	]
+}
