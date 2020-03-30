@@ -22,7 +22,7 @@ class App extends Component {
     }
     
     componentDidMount() {
-	axios.get(apiUrl + '/courses').then(
+	axios.get(apiUrl + 'api/courses').then(
 	    result => {
 		this.setState({
 		    isLoaded: true,
