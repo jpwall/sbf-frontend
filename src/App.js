@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import { Search } from "react-find";
 import ReactDOM from "react-dom";
 import render from "react-dom";
 import axios from "axios";
 import {Router, Route} from 'react-router';
+import SearchFiltering from './SearchFiltering';
 import './App.css';
 
 const apiUrl = 'http://localhost:80';
@@ -50,7 +50,7 @@ class App extends Component {
 	    return <div>Loading courses...</div>;
 	} else {
 	    return (
-		    <div className="App">
+		    /*<div className="App">
 		    <Search
 		      placeholder="Search for your course..."
 		      data={courses}
@@ -58,7 +58,8 @@ class App extends Component {
 		      latestSearch={false}
 		      onClick={this.CoursePageRedirect}
 		    />
-		    </div>
+		    </div>*/
+		    <SearchFiltering content={courses} />
 	    );
 	}
     }
