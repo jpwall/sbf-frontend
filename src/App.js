@@ -7,6 +7,8 @@ import axios from "axios";
 import {Router, Route} from 'react-router';
 import './App.css';
 
+const apiUrl = 'http://localhost:80';
+
 class App extends Component {
     constructor (props) {
 	super(props);
@@ -20,7 +22,7 @@ class App extends Component {
     }
     
     componentDidMount() {
-	axios.get("/courses").then(
+	axios.get(apiUrl + '/courses').then(
 	    result => {
 		this.setState({
 		    isLoaded: true,
