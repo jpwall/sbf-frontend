@@ -26,7 +26,7 @@ class App extends Component {
 	    result => {
 		this.setState({
 		    isLoaded: true,
-		    courses: result.data
+		    courses: result.data.courses
 		});
 	    },
 	    error => {
@@ -50,15 +50,6 @@ class App extends Component {
 	    return <div>Loading courses...</div>;
 	} else {
 	    return (
-		    /*<div className="App">
-		    <Search
-		      placeholder="Search for your course..."
-		      data={courses}
-		      currentLocation={false} 
-		      latestSearch={false}
-		      onClick={this.CoursePageRedirect}
-		    />
-		    </div>*/
 		    <SearchFiltering content={courses} />
 	    );
 	}

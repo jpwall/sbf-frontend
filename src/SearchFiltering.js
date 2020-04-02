@@ -17,7 +17,8 @@ class SearchFiltering extends Component {
     componentWillMount = () => {
       this.setState({
           initialItems: this.props.content,
-          items: this.props.content
+          items: this.props.content,
+	  keys: this.props.ids
       })
     }
 
@@ -30,7 +31,7 @@ class SearchFiltering extends Component {
           <div>
             {
                 this.state.items.map(function(item) {
-                    return <a href={'/course/' + item} ><div key={item}>{item}</div></a>
+                    return <a href={'/course/' + item.sid} ><div key={item.sid}>{item.subject_name}</div></a>
                 })
             }
             </div>
