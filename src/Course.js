@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModules } from '@ag-grid-community/all-modules';
+import authenticationService from './services/AuthenticationService';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 
@@ -8,6 +9,7 @@ class Course extends Component {
     constructor(props) {
 	super(props);
 	this.state = {
+	    currentUser: authenticationService.currentUserValue,
 	    modules: AllCommunityModules,
 	    columnDefs: [{
 		headerName: "Phone", field: "phone"
@@ -28,6 +30,7 @@ class Course extends Component {
     
     render(){
 	const { params } = this.props.match;
+	const { currentUser } = this.state;
 	return (
 	    <div className="ag-theme-material" style={ {height: '100vh', width: '100vw'} }>
 		<AgGridReact

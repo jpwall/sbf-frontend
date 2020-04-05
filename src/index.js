@@ -3,28 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Course from './Course';
+import Login from './Login';
+import Register from './Register';
+import PrivateRoute from './components/PrivateRoute';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
-/*
-render(
-    <Router>
-	<Route path="/" component={App}/>
-	<Route path="/course" component={Course}/>
-    </Router>,
-    document.getElementById('root')
-);
-*/
-
 ReactDOM.render(
-  //<React.StrictMode>
-    <Router>
+      <Router>
 	<div>
 	  <Route exact path='/' component={App} />
-	  <Route path='/course/:name' component={Course} />
+	  <Route path='/login' component={Login} />
+	  <Route path='/register' component={Register} />
+	  <PrivateRoute path='/course/:name' component={Course} />
 	</div>
-    </Router>,
-  //</React.StrictMode>,
+      </Router>,
   document.getElementById('root')
 );
 
