@@ -6,7 +6,7 @@ import Course from './Course';
 import Login from './Login';
 import Register from './Register';
 import PrivateRoute from './components/PrivateRoute';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(

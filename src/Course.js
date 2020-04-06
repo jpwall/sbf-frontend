@@ -29,8 +29,8 @@ class Course extends Component {
     }
     
     render(){
-	const { params } = this.props.match;
-	const { currentUser } = this.state;
+	//const { params } = this.props.match;
+	//const { currentUser } = this.state;
 	return (
 	    <div className="ag-theme-material" style={ {height: '100vh', width: '100vw'} }>
 		<AgGridReact
