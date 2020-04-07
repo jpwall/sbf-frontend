@@ -26,8 +26,15 @@ class Register extends React.Component {
                     }}
                     validationSchema={Yup.object().shape({
                         name: Yup.string().required('Full Name is required'),
-			email: Yup.string().required('Email is required'),
-                        password: Yup.string().required('Password is required')
+			email: Yup.string()
+			    .email('Please enter a valid email')
+			    .required('Email is required'),
+                        password: Yup.string()
+			    .min(8, 'Password must be at least 8 characters')
+			    .required('Password is required'),
+			confirmPass: Yup.string()
+			    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+			    .required('Confirm password is required')
                     })}
             onSubmit={({ name, email, password }, { setStatus, setSubmitting }) => {
                         setStatus();
@@ -60,6 +67,11 @@ class Register extends React.Component {
                                 <Field name="password" type="password" className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')} />
                                 <ErrorMessage name="password" component="div" className="invalid-feedback" />
                             </div>
+			    <div className="form-group">
+			        <label htmlFor="confirmPass">Confirm Password</label>
+			        <Field name="confirmPass" type="password" className={'form-control' + (errors.confirmPass && touched.confirmPass ? ' is-invalid' : '')} />
+			        <ErrorMessage name="confirmPass" component="div" className="invalid-feedback" />
+			    </div>
                             <div className="form-group">
                                 <button type="submit" className="btn btn-primary" disabled={isSubmitting}>Create Account</button>
                                 {isSubmitting &&

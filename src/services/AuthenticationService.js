@@ -29,22 +29,20 @@ function login(email, password) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('currentUser', JSON.stringify(user));
             currentUserSubject.next(user);
-
             return user;
         });
 }
 
 function register(name, email, password) {
-    /*const requestOptions = {
+    const requestOptions = {
 	method: 'POST',
-	mode: 'no-cors',
-	headers: { 'Content-Type': 'application/json' },
-	body: JSON.stringify({ name, email, password })
+	headers: { 'Content-type': 'application/json' },
+	body: JSON.stringify({ name, email, password})
     };
-    return fetch('http://localhost:80/api/users/register', requestOptions);*/
-    axios.post('http://localhost:80/api/users/register', {name: name, email: email, password: password})
+    return fetch('http://localhost:80/api/users/register', requestOptions)
 	.then(handleResponse)
 	.then(user => {
+	    currentUserSubject.next(user);
 	    return user;
 	});
 }
