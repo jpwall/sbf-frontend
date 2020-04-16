@@ -7,36 +7,36 @@ class SearchFiltering extends Component {
     }
 
     filterList = (event) => {
-      let items = this.state.initialItems;
-      items = items.filter((item) => {
-        return item.toLowerCase().search(event.target.value.toLowerCase()) !== -1;
-      });
-      this.setState({items: items});
+	let items = this.state.initialItems;
+	items = items.filter((item) => {
+            return item.subject_name.toLowerCase().search(event.target.value.toLowerCase()) !== -1;
+	});
+	this.setState({items: items});
     }
 
     componentWillMount = () => {
-      this.setState({
-          initialItems: this.props.content,
-          items: this.props.content,
-	  keys: this.props.ids
-      })
+	this.setState({
+            initialItems: this.props.content,
+            items: this.props.content,
+	    keys: this.props.ids
+	})
     }
 
     render() {
-      return (
-        <div>
-          <form>
+	return (
+		<div>
+		<form>
                 <input type="text" placeholder="Search" onChange={this.filterList}/>
-          </form>
-          <div>
-            {
-                this.state.items.map(function(item) {
-                    return <a href={'/course/' + item.sid} ><div key={item.sid}>{item.subject_name}</div></a>
-                })
-            }
+		</form>
+		<div>
+		{
+                    this.state.items.map(function(item) {
+			return <a href={'/course/' + item.sid} ><div key={item.sid}>{item.subject_name}</div></a>
+                    })
+		}
             </div>
-        </div>
-      );
+		</div>
+	);
     }
 }
 
