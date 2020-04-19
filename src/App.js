@@ -22,7 +22,7 @@ class App extends Component {
 	    result => {
 		this.setState({
 		    isLoaded: true,
-		    courses: result.data.courses
+		    courses: result.data
 		});
 	    },
 	    error => {

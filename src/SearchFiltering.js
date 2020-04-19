@@ -31,9 +31,10 @@ class SearchFiltering extends Component {
 		<div>
 		{
                     this.state.items.map(function(item) {
-			return <a href={'/course/' + item.sid} ><div key={item.sid}>{item.subject_name}</div></a>
+			return <a href={'/course/' + item.cid} ><div key={item.cid}>{item.subject_name}</div></a>
                     })
 		}
+		<a href="/newCourse/">Add Missing Course</a>
             </div>
 		</div>
 	);

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Course from './Course';
+import NewCourse from './NewCourse';
 import Login from './Login';
 import Register from './Register';
 import PrivateRoute from './components/PrivateRoute';
@@ -15,7 +16,8 @@ ReactDOM.render(
 	  <Route exact path='/' component={App} />
 	  <Route path='/login' component={Login} />
 	  <Route path='/register' component={Register} />
-	  <PrivateRoute path='/course/:name' component={Course} />
+	<PrivateRoute path='/course/:name' component={Course} />
+	<PrivateRoute path='/newCourse' component={NewCourse} />
 	</div>
       </Router>,
   document.getElementById('root')
