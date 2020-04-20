@@ -69,7 +69,7 @@ class Login extends React.Component {
                 />
 		<a href="/register">Or Create an Account</a>
             </div>
-        )
+        );
     }
 }
 

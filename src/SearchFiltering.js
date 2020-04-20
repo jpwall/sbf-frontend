@@ -26,7 +26,7 @@ class SearchFiltering extends Component {
 	return (
 		<div>
 		<form>
-                <input type="text" placeholder="Search" onChange={this.filterList}/>
+                <input className="caps" type="text" placeholder="Search" onChange={this.filterList}/>
 		</form>
 		<div>
 		{

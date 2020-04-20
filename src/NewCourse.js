@@ -24,7 +24,7 @@ class NewCourse extends Component {
         super(props);
         this.state = {
             currentUser: authenticationService.currentUserValue
-        }
+        };
     }
     
     render() {
@@ -58,7 +58,7 @@ class NewCourse extends Component {
                     <Form>
                       <div className="form-group">
                         <label htmlFor="name">Course Name</label>
-                        <Field name="name" type="text" className={'form-control' + (errors.name && touched.name ? ' is-invalid' : '')} />
+                        <Field name="name" type="text" className={'form-control' + (errors.name && touched.name ? ' is-invalid' : '') + ' caps'} />
                         <ErrorMessage name="name" component="div" className="invalid-feedback" />
                       </div>
                       <div className="form-group">
