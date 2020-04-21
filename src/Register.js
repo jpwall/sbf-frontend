@@ -1,8 +1,18 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-
+import { isPossiblePhoneNumber } from 'react-phone-number-input';
 import authenticationService from './services/AuthenticationService';
+import PhoneInputField from './components/PhoneInputField';
+
+const ref = React.createRef();
+
+function pTest(phone) {
+    if (isPossiblePhoneNumber(phone)) {
+        return true;
+    }
+    return false;
+}
 
 class Register extends React.Component {
     constructor(props) {
@@ -13,7 +23,7 @@ class Register extends React.Component {
             this.props.history.push('/');
         }
     }
-
+    
     render() {
         return (
             <div>
@@ -22,13 +32,20 @@ class Register extends React.Component {
                 initialValues={{
                     name: '',
 		    email: '',
+                    phone: '',
                     password: ''
                 }}
                 validationSchema={Yup.object().shape({
-                    name: Yup.string().required('Full Name is required'),
+                    name: Yup.string()
+                        .required('Full Name is required'),
 		    email: Yup.string()
 			.email('Please enter a valid email')
 			.required('Email is required'),
+                    phone: Yup.string()
+                        .test('Phone test',
+                              'Invalid Phone Number',
+                              value => pTest(value))
+                        .required('Phone is required'),
                     password: Yup.string()
 			.min(8, 'Password must be at least 8 characters')
 			.required('Password is required'),
@@ -50,7 +67,7 @@ class Register extends React.Component {
                             }
                         );
                 }}
-                render={({ errors, status, touched, isSubmitting }) => (
+                render={({ errors, status, touched, isSubmitting, setFieldValue }) => (
                     <Form>
 		      <div className="form-group">
                         <label htmlFor="name">Full Name</label>
@@ -61,6 +78,16 @@ class Register extends React.Component {
                         <label htmlFor="email">Email</label>
                         <Field name="email" type="email" className={'form-control' + (errors.email && touched.email ? ' is-invalid' : '')} />
                         <ErrorMessage name="email" component="div" className="invalid-feedback" />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="phone">Phone</label>
+                        <PhoneInputField ref={ref} name="phone" type="text" onChange={e => {
+                            setFieldValue("phone", e);
+                            touched.phone = true;
+                            errors.phone = isPossiblePhoneNumber(e);
+                        }
+                                                                                     } className={'form-control' + (errors.phone && touched.phone ? ' is-invalid' : '')} />
+                        <ErrorMessage name="phone" component="div" className="invalid-feedback" />
                       </div>
                       <div className="form-group">
                         <label htmlFor="password">Password</label>
