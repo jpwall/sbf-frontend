@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import Course from './Course';
 import NewCourse from './NewCourse';
+import AddPhone from './AddPhone';
 import Login from './Login';
 import Register from './Register';
 import PrivateRoute from './components/PrivateRoute';
@@ -11,16 +12,17 @@ import { Route, BrowserRouter as Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-      <Router>
-	<div>
-	  <Route exact path='/' component={App} />
-	  <Route path='/login' component={Login} />
-	  <Route path='/register' component={Register} />
-	<PrivateRoute path='/course/:name' component={Course} />
+    <Router>
+      <div>
+	<Route exact path='/' component={App} />
+	<Route path='/login' component={Login} />
+	<Route path='/register' component={Register} />
+	<PrivateRoute path='/course/:cid' component={Course} />
 	<PrivateRoute path='/newCourse' component={NewCourse} />
-	</div>
-      </Router>,
-  document.getElementById('root')
+        <PrivateRoute path='/addPhone/:cid' component={AddPhone} />
+      </div>
+    </Router>,
+    document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
