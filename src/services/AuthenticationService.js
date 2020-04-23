@@ -33,11 +33,12 @@ function login(email, password) {
         });
 }
 
-function register(name, email, password) {
+function register(name, email, phone, password) {
+    phone = parseInt(phone.substring(1));
     const requestOptions = {
 	method: 'POST',
 	headers: { 'Content-type': 'application/json' },
-	body: JSON.stringify({ name, email, password})
+	body: JSON.stringify({ name, email, password, phone})
     };
     return fetch('http://localhost:80/api/users/register', requestOptions)
 	.then(handleResponse)

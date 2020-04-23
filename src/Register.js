@@ -53,9 +53,9 @@ class Register extends React.Component {
 			.oneOf([Yup.ref('password'), null], 'Passwords must match')
 			.required('Confirm password is required')
                 })}
-                onSubmit={({ name, email, password }, { setStatus, setSubmitting }) => {
+                onSubmit={({ name, email, phone, password }, { setStatus, setSubmitting }) => {
                     setStatus();
-                    authenticationService.register(name, email, password)
+                    authenticationService.register(name, email, phone, password)
                         .then(
                             user => {
                                 const { from } = this.props.location.state || { from: { pathname: "/" } };
