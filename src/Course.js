@@ -38,10 +38,9 @@ class Course extends Component {
         };
         axios.get(`http://localhost:80/api/preferences/?cid=${encodeURIComponent(this.props.match.params.cid)}`)
             .then(res => {
-                console.log("USERS: ", res);
                 this.setState({
                     isLoaded: true,
-                    rowData: res.data.users
+                    rowData: res.data
                 });
             },
                   err => {
