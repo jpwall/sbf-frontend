@@ -1,5 +1,3 @@
-// BUG: User is logged out when they submit an already existing course.
-
 import React, { Component } from 'react';
 import authenticationService from './services/AuthenticationService';
 import { handleResponse } from './helpers/HandleResponse.js';

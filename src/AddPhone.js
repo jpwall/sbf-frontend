@@ -1,5 +1,3 @@
-// BUG: Logged out on unsuccessful submission of grade :[
-
 import React, { Component } from 'react';
 import authenticationService from './services/AuthenticationService';
 import { handleResponse } from './helpers/HandleResponse';
