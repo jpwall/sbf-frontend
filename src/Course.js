@@ -21,13 +21,9 @@ class Course extends Component {
 	    }, {
 		headerName: "Min. Grade", field: "min_grade", filter: 'agNumberColumnFilter'
 	    }],
-	    rowData: [/*{
-		phone_number: "+1 (206) 979 3532", min_grade: 3.5
-	    }, {
-		phone_number: "+1 (206) 923 1037", min_grade: 3.0
-	    }, {
-		phone_number: "+1 (206) 979 3438", min_grade: 2.5
-	    }*/]
+	    rowData: [],
+            courseName: null,
+            description: null
 	};
     }
 
@@ -42,13 +38,26 @@ class Course extends Component {
                     isLoaded: true,
                     rowData: res.data
                 });
-            },
-                  err => {
-                      this.setState({
-                          isLoaded: true,
-                          err
-                      });
-                  });
+            }, err => {
+                this.setState({
+                    isLoaded: true,
+                    err
+                });
+            });
+
+        axios.get(`http://localhost:80/api/courses/get/?cid=${encodeURIComponent(this.props.match.params.cid)}`)
+            .then(res => {
+                console.log('RES DATA: ', res.data);
+                this.setState({
+                    courseName: res.data.subject_name,
+                    description: res.data.description
+                });
+            }, err => {
+                this.setState({
+                    isLoaded: true,
+                    err
+                });
+            });
     }
     
     render() {
@@ -59,14 +68,17 @@ class Course extends Component {
             return <div>Loading data...</div>;
         } else {
 	    return (
-                <div><a href={'/addPhone/' + this.props.match.params.cid} >Add myself as a study buddy!</a>
+                <React.Fragment>
+                  <div>{this.state.courseName}</div>
+                  <div>{this.state.description}</div>
+                  <div><a href={'/addPhone/' + this.props.match.params.cid} >Add myself as a study buddy to {this.state.courseName}</a></div>
 	          <div className="ag-theme-material" style={ {height: '100vh', width: '100vw'} }>
 	            <AgGridReact
                       columnDefs={columnDefs}
                       rowData={rowData}
 	            ></AgGridReact>
 	          </div>
-                </div>
+                </React.Fragment>
 	    );
         }
     }
