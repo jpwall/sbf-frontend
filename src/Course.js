@@ -3,6 +3,7 @@ import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModules } from '@ag-grid-community/all-modules';
 import axios from 'axios';
 import authenticationService from './services/AuthenticationService';
+import { handleResponse } from './helpers/HandleResponse';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 
@@ -23,15 +24,12 @@ class Course extends Component {
 	    }],
 	    rowData: [],
             courseName: null,
-            description: null
+            description: null,
+            isUser: null
 	};
     }
 
-    componentDidMount() {
-        const requestOptions = {
-            method: 'GET',
-            headers: { 'Content-type': 'application/json' }
-        };
+    getRowData() {
         axios.get(`http://localhost:80/api/preferences/?cid=${encodeURIComponent(this.props.match.params.cid)}`)
             .then(res => {
                 this.setState({
@@ -44,7 +42,18 @@ class Course extends Component {
                     err
                 });
             });
+    }
+    
+    componentDidMount() {
+        const uid = this.state.currentUser.user.uid;
+        const cid = this.props.match.params.cid;
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify({ uid, cid })
+        };
 
+        this.getRowData();
         axios.get(`http://localhost:80/api/courses/get/?cid=${encodeURIComponent(this.props.match.params.cid)}`)
             .then(res => {
                 console.log('RES DATA: ', res.data);
@@ -58,6 +67,32 @@ class Course extends Component {
                     err
                 });
             });
+        fetch('http://localhost:80/api/preferences/check', requestOptions)
+            .then(handleResponse)
+            .then(data => {
+                var ret = false;
+                if (parseInt(data.msg.case) == 1) {
+                    ret = true;
+                }
+                this.setState({
+                    isUser: ret
+                });
+            });
+    }
+
+    removeUser(uid, cid) {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify({ uid, cid })
+        };
+        return fetch('http://localhost:80/api/preferences/remove', requestOptions)
+            .then(data => {
+                this.setState({
+                    isUser: false
+                });
+                this.getRowData();
+            });
     }
     
     render() {
@@ -67,11 +102,18 @@ class Course extends Component {
         } else if (!isLoaded) {
             return <div>Loading data...</div>;
         } else {
+            const isUser = this.state.isUser;
+            let actionButton;
+            if (isUser) {
+                actionButton = <button onClick={() => { this.removeUser(this.state.currentUser.user.uid, this.props.match.params.cid) } }>Remove myself from {this.state.courseName}</button>;
+            } else {
+                actionButton = <div><a href={'/addPhone/' + this.props.match.params.cid} >Add myself as a study buddy to {this.state.courseName}</a></div>;
+            }
 	    return (
                 <React.Fragment>
                   <div>{this.state.courseName}</div>
                   <div>{this.state.description}</div>
-                  <div><a href={'/addPhone/' + this.props.match.params.cid} >Add myself as a study buddy to {this.state.courseName}</a></div>
+                  {actionButton}
 	          <div className="ag-theme-material" style={ {height: '100vh', width: '100vw'} }>
 	            <AgGridReact
                       columnDefs={columnDefs}
