@@ -2,8 +2,8 @@ import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { isPossiblePhoneNumber } from 'react-phone-number-input';
-import authenticationService from './services/AuthenticationService';
-import PhoneInputField from './components/PhoneInputField';
+import authenticationService from './../authHelpers/AuthenticationService';
+import PhoneInputField from './../components/PhoneInputField';
 
 const ref = React.createRef();
 

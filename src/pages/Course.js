@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllCommunityModules } from '@ag-grid-community/all-modules';
 import axios from 'axios';
-import authenticationService from './services/AuthenticationService';
-import { handleResponse } from './helpers/HandleResponse';
+import authenticationService from './../authHelpers/AuthenticationService';
+import { handleResponse } from './../authHelpers/HandleResponse';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 

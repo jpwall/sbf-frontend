@@ -4,7 +4,7 @@ import axios from "axios";
 import { BehaviorSubject } from 'rxjs';
 
 //import config from 'config';
-import { handleResponse } from './../helpers/HandleResponse';
+import { handleResponse } from './HandleResponse';
 
 const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
 

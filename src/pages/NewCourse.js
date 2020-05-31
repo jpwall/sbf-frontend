@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import authenticationService from './services/AuthenticationService';
-import { handleResponse } from './helpers/HandleResponse.js';
+import authenticationService from './../authHelpers/AuthenticationService';
+import { handleResponse } from './../authHelpers/HandleResponse.js';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 

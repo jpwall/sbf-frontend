@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import Course from './Course';
-import NewCourse from './NewCourse';
-import AddPhone from './AddPhone';
-import Login from './Login';
-import Register from './Register';
+import App from './pages/App';
+import Course from './pages/Course';
+import NewCourse from './pages/NewCourse';
+import AddPhone from './pages/AddPhone';
+import Login from './pages/Login';
+import Register from './pages/Register';
 import PrivateRoute from './components/PrivateRoute';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';

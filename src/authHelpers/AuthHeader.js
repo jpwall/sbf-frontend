@@ -1,6 +1,6 @@
 // From: https://github.com/cornflourblue/react-jwt-authentication-example/
 
-import { authenticationService } from './../services/AuthenticationService';
+import { authenticationService } from './AuthenticationService';
 
 export function authHeader() {
     // return authorization header with jwt token
