@@ -7,6 +7,7 @@ import NewCourse from './pages/NewCourse';
 import AddPhone from './pages/AddPhone';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
@@ -20,6 +21,7 @@ ReactDOM.render(
 	<PrivateRoute path='/course/:cid' component={Course} />
 	<PrivateRoute path='/newCourse' component={NewCourse} />
         <PrivateRoute path='/addPhone/:cid' component={AddPhone} />
+        <PrivateRoute path='/dashboard' component={Dashboard} />
       </div>
     </Router>,
     document.getElementById('root')
