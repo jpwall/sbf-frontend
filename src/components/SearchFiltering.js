@@ -1,43 +1,64 @@
 import React, { Component } from 'react';
+import { handleResponse } from './../authHelpers/HandleResponse';
 
 class SearchFiltering extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     state = {
-        initialItems: [],
-        items: []
+        error: null,
+        isLoaded: false,
+        timeout: 0,
+        courses: []
     }
 
-    filterList = (event) => {
-	let items = this.state.initialItems;
-	items = items.filter((item) => {
-            return item.subject_name.toLowerCase().search(event.target.value.toLowerCase()) !== -1;
-	});
-	this.setState({items: items});
+    updateSearch(val) {
+        if (this.state.timeout) clearTimeout(this.state.timeout);
+        this.setState({
+            isLoaded: false,
+            courses: []
+        });
+        if (val.length >=3) {
+            this.state.timeout = setTimeout(() => {
+                this.searchCourses(val.toUpperCase());
+            }, 1000);
+        }
     }
 
-    componentWillMount = () => {
-	this.setState({
-            initialItems: this.props.content,
-            items: this.props.content,
-	    keys: this.props.ids
-	})
+    searchCourses(search) {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify({ search })
+        };
+        
+        fetch('http://localhost:80/api/courses/search', requestOptions)
+            .then(handleResponse)
+            .then(data => {
+                this.setState({
+                    isLoaded: true,
+                    courses: data
+                });
+            });
     }
 
     render() {
-	return (
-		<div>
-		<form>
-                <input className="caps" type="text" placeholder="Search" onChange={this.filterList}/>
-		</form>
-		<div>
-		{
-                    this.state.items.map(function(item) {
-			return <a href={'/course/' + item.cid} ><div key={item.cid}>{item.subject_name}</div></a>
-                    })
-		}
-		<a href="/newCourse/">Add Missing Course</a>
+        const { error, isLoaded, courses } = this.state;
+        return (
+            <div>
+              <form>
+                <input className="caps" type="text" placeholder="Search for a course!" onChange={e => this.updateSearch(e.target.value)} />
+              </form>
+              <div>
+                {
+                    courses.map((course) => 
+                                <a href={'/course/' + course.cid} key={course.cid}><div key={course.cid}>{course.subject_name}</div></a>
+                    )
+                }
+              </div>
             </div>
-		</div>
-	);
+        );
     }
 }
 

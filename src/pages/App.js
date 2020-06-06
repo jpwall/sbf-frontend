@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import SearchFiltering from './../components/SearchFiltering';
 import './App.css';
 
@@ -17,23 +16,6 @@ class App extends Component {
 	this.CoursePageRedirect = this.CoursePageRedirect.bind(this);
     }
     
-    componentDidMount() {
-	axios.get(apiUrl + "/api/courses").then(
-	    result => {
-		this.setState({
-		    isLoaded: true,
-		    courses: result.data
-		});
-	    },
-	    error => {
-		this.setState({
-		    isLoaded: true,
-		    error
-		});
-	    }
-	);
-    }
-    
     CoursePageRedirect(event) {
 	window.location.assign('/course');
     }
@@ -42,11 +24,9 @@ class App extends Component {
 	const { error, isLoaded, courses } = this.state;
 	if (error) {
 	    return <div>Error: {error.message}</div>;
-	} else if (!isLoaded) {
-	    return <div>Loading courses...</div>;
 	} else {
 	    return (
-		    <SearchFiltering content={courses} />
+                <SearchFiltering />
 	    );
 	}
     }

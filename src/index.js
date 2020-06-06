@@ -19,7 +19,6 @@ ReactDOM.render(
 	<Route path='/login' component={Login} />
 	<Route path='/register' component={Register} />
 	<PrivateRoute path='/course/:cid' component={Course} />
-	<PrivateRoute path='/newCourse' component={NewCourse} />
         <PrivateRoute path='/addPhone/:cid' component={AddPhone} />
         <PrivateRoute path='/dashboard' component={Dashboard} />
       </div>
