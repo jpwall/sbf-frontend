@@ -4,8 +4,6 @@ import { handleResponse } from './../authHelpers/HandleResponse';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-// CID: this.state.currentUser.user.uid
-// Token: this.state.currentUser.token
 function submitPhone(uid, cid, minGrade) {
     const requestOptions = {
         method: 'POST',
@@ -43,7 +41,8 @@ class AddPhone extends Component {
                     submitPhone(this.state.currentUser.user.uid, this.props.match.params.cid, grade)
                     .then(
                         data => {
-                            const { from } = this.props.location.state || { from: { pathname: "/" } };
+                            var curpath = "/course/" + this.props.match.params.cid;
+                            const { from } = this.props.location.state || { from: { pathname: curpath } };
                             this.props.history.push(from);
                         },
                         error => {
