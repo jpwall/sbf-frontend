@@ -1,11 +1,9 @@
+// BUG: Need to figure out how to show actionButton as the same type (either a tag or button)
 import React, { Component } from 'react';
-import { AgGridReact } from 'ag-grid-react';
-import { AllCommunityModules } from '@ag-grid-community/all-modules';
+import CourseTable from './../components/CourseTable';
 import axios from 'axios';
 import authenticationService from './../authHelpers/AuthenticationService';
 import { handleResponse } from './../authHelpers/HandleResponse';
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-material.css';
 
 class Course extends Component {
     constructor(props) {
@@ -14,14 +12,6 @@ class Course extends Component {
             err: null,
             isLoaded: false,
 	    currentUser: authenticationService.currentUserValue,
-	    modules: AllCommunityModules,
-	    columnDefs: [{
-                headerName: "Name", field: "full_name"
-            },{
-		headerName: "Phone", field: "phone_number"
-	    }, {
-		headerName: "Min. Grade", field: "min_grade", filter: 'agNumberColumnFilter'
-	    }],
 	    rowData: [],
             courseName: null,
             description: null,
@@ -56,7 +46,6 @@ class Course extends Component {
         this.getRowData();
         axios.get(`http://localhost:80/api/courses/get/?cid=${encodeURIComponent(this.props.match.params.cid)}`)
             .then(res => {
-                console.log('RES DATA: ', res.data);
                 this.setState({
                     courseName: res.data.subject_name,
                     description: res.data.description
@@ -96,10 +85,9 @@ class Course extends Component {
     }
     
     render() {
-        const { err, isLoaded, currentUser, modules, columnDefs, rowData } = this.state;
-        if (err) {
-            return <div>Error: {err.message}</div>;
-        } else if (!isLoaded) {
+        if (this.state.err) {
+            return <div>Error: {this.state.err.message}</div>;
+        } else if (!this.state.isLoaded) {
             return <div>Loading data...</div>;
         } else {
             const isUser = this.state.isUser;
@@ -114,12 +102,7 @@ class Course extends Component {
                   <div>{this.state.courseName}</div>
                   <div>{this.state.description}</div>
                   {actionButton}
-	          <div className="ag-theme-material" style={ {height: '100vh', width: '100vw'} }>
-	            <AgGridReact
-                      columnDefs={columnDefs}
-                      rowData={rowData}
-	            ></AgGridReact>
-	          </div>
+                  <CourseTable rowData={this.state.rowData} />
                 </React.Fragment>
 	    );
         }
