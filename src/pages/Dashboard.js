@@ -75,7 +75,7 @@ class Dashboard extends Component {
                 {
                     this.state.courses.map((course) =>
                                            <tr key={course.cid.toString()}>
-                                             <td>{course.subject_name}</td>
+                                             <td><a href={'/course/' + course.cid}>{course.subject_name}</a></td>
                                              <td>{course.min_grade}</td>
                                              <td><button onClick={() => { this.removeCourse(course.cid) } }>Remove</button></td>
                                            </tr>
