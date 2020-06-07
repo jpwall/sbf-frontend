@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import authenticationService from './../authHelpers/AuthenticationService';
 import './../Global.css';
 
 class Header extends Component {
@@ -17,9 +18,15 @@ class Header extends Component {
         }
         let rightSide;
         if (isLoggedIn) {
-            rightSide = <div className="rightSideHeader"><a href="/dashboard"><div className="button">Your Profile</div></a><a href="/logout"><div className="button">Logout</div></a></div>;
+            rightSide = (<div className="rightSideHeader">
+                           <a href="/dashboard"><div className="button">Your Profile</div></a>
+                           <a href="/" onClick={() => { authenticationService.logout() }} className="button">Logout</a>
+                         </div>);
         } else {
-            rightSide = <div className="rightSideHeader"><a href="/login"><div className="button">Login</div></a><a href="/register"><div className="button">Register</div></a></div>;
+            rightSide = (<div className="rightSideHeader">
+                           <a href="/login"><div className="button">Login</div></a>
+                           <a href="/register"><div className="button">Register</div></a>
+                         </div>);
         }
         return (
             <div className="header">
