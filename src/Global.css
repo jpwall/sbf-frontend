@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+body {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.header {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background: #a9f5fc;
+}
+
+.menuButton {
+    background: white
+}
+
+.rightSideHeader {
+    display: flex;
+    flex-direction: row;
+}
+
+.button {
+    background: white;
+    box-sizing: border-box;
+    border: black;
+    border-width: 2px;
+    padding: 10px;
+}
