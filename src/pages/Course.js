@@ -1,6 +1,7 @@
 // BUG: Need to figure out how to show actionButton as the same type (either a tag or button)
 import React, { Component } from 'react';
 import CourseTable from './../components/CourseTable';
+import Header from './../components/Header';
 import axios from 'axios';
 import authenticationService from './../authHelpers/AuthenticationService';
 import { handleResponse } from './../authHelpers/HandleResponse';
@@ -99,6 +100,7 @@ class Course extends Component {
             }
 	    return (
                 <React.Fragment>
+                  <Header currentUser={this.state.currentUser} />
                   <div>{this.state.courseName}</div>
                   <div>{this.state.description}</div>
                   {actionButton}

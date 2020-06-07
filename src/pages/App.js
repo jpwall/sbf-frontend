@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import authenticationService from './../authHelpers/AuthenticationService';
 import SearchFiltering from './../components/SearchFiltering';
-import './App.css';
+import Header from './../components/Header';
+import './../Global.css';
 
 const apiUrl = 'http://localhost:80';
 
@@ -10,6 +12,7 @@ class App extends Component {
 	this.state = {
 	    error: null,
 	    isLoaded: false,
+            currentUser: authenticationService.currentUserValue,
 	    courses: []
 	};
 
@@ -26,7 +29,10 @@ class App extends Component {
 	    return <div>Error: {error.message}</div>;
 	} else {
 	    return (
-                <SearchFiltering />
+                <React.Fragment>
+                  <Header currentUser={this.state.currentUser} />
+                  <SearchFiltering />
+                </React.Fragment>
 	    );
 	}
     }

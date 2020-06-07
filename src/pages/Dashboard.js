@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Header from './../components/Header';
 import authenticationService from './../authHelpers/AuthenticationService';
 import { handleResponse } from './../authHelpers/HandleResponse';
 
@@ -83,7 +84,12 @@ class Dashboard extends Component {
               </tbody>
             </table>
         );
-        return userCourses;
+        return (
+            <React.Fragment>
+              <Header currentUser={this.state.currentUser} />
+              {userCourses}
+            </React.Fragment>
+        );
     }
 }
 
