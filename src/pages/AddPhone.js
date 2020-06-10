@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import authenticationService from './../authHelpers/AuthenticationService';
+import axios from 'axios';
 import { handleResponse } from './../authHelpers/HandleResponse';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -21,14 +22,29 @@ class AddPhone extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentUser: authenticationService.currentUserValue
+            currentUser: authenticationService.currentUserValue,
+            courseName: null,
+            error: null
         };
+    }
+
+    componentDidMount() {
+        axios.get(`http://localhost:80/api/courses/get/?cid=${encodeURIComponent(this.props.match.params.cid)}`)
+            .then(res => {
+                this.setState({
+                    courseName: res.data.subject_name
+                });
+            }, err => {
+                this.setState({
+                    error: err
+                });
+            });
     }
 
     render() {
         return (
-            <div>
-              <h2>Add me to the class!</h2>
+            <div className="fullPageContainer">
+              <h2>Add me as a study buddy to {this.state.courseName}!</h2>
               <Formik
                 initialValues={{
                     grade: ''
@@ -54,12 +70,12 @@ class AddPhone extends Component {
                 render={({ errors, status, touched, isSubmitting }) => (
                     <Form>
                       <div className="form-group">
-                        <label htmlFor="grade">My desired minimum grade in this class</label>
+                        <label htmlFor="grade">My desired minimum grade is: </label>
                         <Field name="grade" type="text" className={'form-control' + (errors.grade && touched.grade ? ' is-invalid' : '')} />
                         <ErrorMessage name="grade" component="div" className="invalid-feedback" />
                       </div>
-                      <div className="form-group">
-                        <button type="submit" className="btn btn-primary" disabled={isSubmitting}>List me as a Study Buddy!</button>
+                      <div className="form-group" id="form-end">
+                        <button type="submit" className="btn btn-primary" disabled={isSubmitting}>List me!</button>
                         {isSubmitting &&
                          <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                         }

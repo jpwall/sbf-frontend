@@ -31,7 +31,12 @@ class App extends Component {
 	    return (
                 <React.Fragment>
                   <Header currentUser={this.state.currentUser} />
-                  <SearchFiltering />
+                  <div className="primaryContainer">
+                    <div className="searchFiltering">
+                      <h1>Find a study buddy in your class!</h1>
+                      <SearchFiltering />
+                    </div>
+                  </div>
                 </React.Fragment>
 	    );
 	}

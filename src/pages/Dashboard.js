@@ -68,7 +68,7 @@ class Dashboard extends Component {
                 <tr>
                   <th>Course Name</th>
                   <th>Min Grade</th>
-                  <th>Remove</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -77,17 +77,24 @@ class Dashboard extends Component {
                                            <tr key={course.cid.toString()}>
                                              <td><a href={'/course/' + course.cid}>{course.subject_name}</a></td>
                                              <td>{course.min_grade}</td>
-                                             <td><button onClick={() => { this.removeCourse(course.cid) } }>Remove</button></td>
+                                             <td><button id="red" onClick={() => { this.removeCourse(course.cid) } }>Delete</button></td>
                                            </tr>
                                           )
                 }
               </tbody>
             </table>
         );
+        var firstName = this.state.currentUser.user.name.split(" ")[0];
         return (
             <React.Fragment>
-              <Header currentUser={this.state.currentUser} />
-              {userCourses}
+              <Header title={firstName} currentUser={this.state.currentUser} />
+              <div className="primaryContainer">
+                <div className="internalContainer">
+                  <h1>Hi, {firstName}!</h1>
+                  <h2>You are listed as a study buddy in:</h2>
+                  {userCourses}
+                </div>
+              </div>
             </React.Fragment>
         );
     }

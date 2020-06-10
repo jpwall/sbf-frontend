@@ -94,17 +94,21 @@ class Course extends Component {
             const isUser = this.state.isUser;
             let actionButton;
             if (isUser) {
-                actionButton = <button onClick={() => { this.removeUser(this.state.currentUser.user.uid, this.props.match.params.cid) } }>Remove myself from {this.state.courseName}</button>;
+                actionButton = <button id="red" onClick={() => { this.removeUser(this.state.currentUser.user.uid, this.props.match.params.cid) } }>Remove myself from {this.state.courseName}</button>;
             } else {
-                actionButton = <div><a href={'/addPhone/' + this.props.match.params.cid} >Add myself as a study buddy to {this.state.courseName}</a></div>;
+                actionButton = <a className="button-alt" href={'/addPhone/' + this.props.match.params.cid} >Add myself to {this.state.courseName}</a>;
             }
 	    return (
                 <React.Fragment>
                   <Header currentUser={this.state.currentUser} />
-                  <div>{this.state.courseName}</div>
-                  <div>{this.state.description}</div>
-                  {actionButton}
-                  <CourseTable rowData={this.state.rowData} />
+                  <div className="primaryContainer">
+                    <div className="internalContainer">
+                      <h1>{this.state.courseName}</h1>
+                      <h2>{this.state.description}</h2>
+                      {actionButton}
+                      <CourseTable rowData={this.state.rowData} />
+                    </div>
+                  </div>
                 </React.Fragment>
 	    );
         }

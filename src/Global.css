@@ -1,6 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 body {
     font-family: 'Noto Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+input {
+    padding: 5px;
+    border: 2px solid #000;
+    border-radius: 2px;
+    margin-bottom: 5px;
 }
 
 .header {
@@ -11,6 +23,13 @@ body {
     align-items: center;
     justify-content: space-between;
     background: #a9f5fc;
+    box-sizing: border-box;
+}
+
+.logo {
+    font-family: 'Permanent Marker', cursive;
+    color: black;
+    font-size: 40px;
 }
 
 .menuButton {
@@ -23,9 +42,104 @@ body {
 }
 
 .button {
-    background: white;
+    background: black;
+    color: white;
     box-sizing: border-box;
     border: black;
+    border-style: solid;
     border-width: 2px;
+    border-radius: 2px;
     padding: 10px;
+    margin-left: 10px;
+}
+
+.searchFiltering {
+    margin-top: 20px;
+    width: 40%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.primaryContainer {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.internalContainer {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+table {
+    width: 100%;
+    margin-top: 30px;
+}
+
+td {
+    text-align: center;
+}
+
+.fullPageContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+Form {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: first firstbaseline;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+#form-end {
+    align-self: center;
+}
+
+button {
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 5px;
+    background: #80fcd3;
+    color: black;
+    border-radius: 3px;
+    border: black;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.button-alt {
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 5px;
+    background: #eabffc;
+    color: black;
+    border-radius: 3px;
+    border: black;
+    border-style: solid;
+    border-width: 2px;
+}
+
+#red {
+    background: #fca6be;
+}
+
+#purple {
+    background: #eabffc;
 }

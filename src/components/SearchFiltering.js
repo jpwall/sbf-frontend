@@ -46,18 +46,18 @@ class SearchFiltering extends Component {
     render() {
         const { error, isLoaded, courses } = this.state;
         return (
-            <div>
+            <React.Fragment>
               <form>
-                <input className="caps" type="text" placeholder="Search for a course!" onChange={e => this.updateSearch(e.target.value)} />
+                <input className="caps" type="text" placeholder="Start typing to search courses..." onChange={e => this.updateSearch(e.target.value)} />
               </form>
               <div>
                 {
                     courses.map((course) => 
                                 <a href={'/course/' + course.cid} key={course.cid}><div key={course.cid}>{course.subject_name}</div></a>
-                    )
+                               )
                 }
               </div>
-            </div>
+            </React.Fragment>
         );
     }
 }

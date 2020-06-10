@@ -19,7 +19,7 @@ class Header extends Component {
         let rightSide;
         if (isLoggedIn) {
             rightSide = (<div className="rightSideHeader">
-                           <a href="/dashboard"><div className="button">Your Profile</div></a>
+                           <a href="/dashboard"><div className="button">Your Courses</div></a>
                            <a href="/" onClick={() => { authenticationService.logout() }} className="button">Logout</a>
                          </div>);
         } else {
@@ -30,7 +30,6 @@ class Header extends Component {
         }
         return (
             <div className="header">
-              <div className="menuButton">MENU</div>
               <a href="/"><div className="logo">STUDIUS</div></a>
               {rightSide}
             </div>
