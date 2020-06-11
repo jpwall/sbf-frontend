@@ -29,9 +29,13 @@ class Dashboard extends Component {
 
     getActiveCourses() {
         const uid = this.state.currentUser.user.uid;
+        const token = this.state.currentUser.token;
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-type': 'application/json' },
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': token
+            },
             body: JSON.stringify({ uid })
         };
         fetch('http://localhost:80/api/preferences/userCourses', requestOptions)
@@ -45,9 +49,13 @@ class Dashboard extends Component {
 
     removeCourse(cid) {
         const uid = this.state.currentUser.user.uid;
+        const token = this.state.currentUser.token;
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-type': 'application/json' },
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': token
+            },
             body: JSON.stringify({ uid, cid })
         };
         return fetch('http://localhost:80/api/preferences/remove', requestOptions)

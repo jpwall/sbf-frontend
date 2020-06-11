@@ -5,10 +5,13 @@ import { handleResponse } from './../authHelpers/HandleResponse';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-function submitPhone(uid, cid, minGrade) {
+function submitPhone(uid, cid, minGrade, token) {
     const requestOptions = {
         method: 'POST',
-        headers: { 'Content-type': 'application/json' },
+        headers: {
+            'Content-type': 'application/json',
+            'Authorization': token
+        },
         body: JSON.stringify({ uid, cid, minGrade })
     };
     return fetch('http://localhost:80/api/preferences/add', requestOptions)
@@ -29,7 +32,8 @@ class AddPhone extends Component {
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:80/api/courses/get/?cid=${encodeURIComponent(this.props.match.params.cid)}`)
+        const token = this.state.currentUser.token;
+        axios.get(`http://localhost:80/api/courses/get/?cid=${encodeURIComponent(this.props.match.params.cid)}`, { headers: { Authorization: token } })
             .then(res => {
                 this.setState({
                     courseName: res.data.subject_name
@@ -54,7 +58,7 @@ class AddPhone extends Component {
                 })}
                 onSubmit={({ grade }, { setStatus, setSubmitting }) => {
                     setStatus();
-                    submitPhone(this.state.currentUser.user.uid, this.props.match.params.cid, grade)
+                    submitPhone(this.state.currentUser.user.uid, this.props.match.params.cid, grade, this.state.currentUser.token)
                     .then(
                         data => {
                             var curpath = "/course/" + this.props.match.params.cid;

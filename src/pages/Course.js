@@ -21,7 +21,8 @@ class Course extends Component {
     }
 
     getRowData() {
-        axios.get(`http://localhost:80/api/preferences/?cid=${encodeURIComponent(this.props.match.params.cid)}`)
+        const token = this.state.currentUser.token;
+        axios.get(`http://localhost:80/api/preferences/?cid=${encodeURIComponent(this.props.match.params.cid)}`, { headers: { Authorization: token } })
             .then(res => {
                 this.setState({
                     isLoaded: true,
@@ -38,14 +39,18 @@ class Course extends Component {
     componentDidMount() {
         const uid = this.state.currentUser.user.uid;
         const cid = this.props.match.params.cid;
+        const token = this.state.currentUser.token;
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-type': 'application/json' },
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': token
+            },
             body: JSON.stringify({ uid, cid })
         };
 
         this.getRowData();
-        axios.get(`http://localhost:80/api/courses/get/?cid=${encodeURIComponent(this.props.match.params.cid)}`)
+        axios.get(`http://localhost:80/api/courses/get/?cid=${encodeURIComponent(this.props.match.params.cid)}`, { headers: { Authorization: token } })
             .then(res => {
                 this.setState({
                     courseName: res.data.subject_name,
@@ -71,9 +76,13 @@ class Course extends Component {
     }
 
     removeUser(uid, cid) {
+        const token = this.state.currentUser.token;
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-type': 'application/json' },
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': token
+            },
             body: JSON.stringify({ uid, cid })
         };
         return fetch('http://localhost:80/api/preferences/remove', requestOptions)
