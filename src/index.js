@@ -9,6 +9,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
+import About from './pages/About';
+import Donate from './pages/Donate';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
@@ -18,6 +20,8 @@ ReactDOM.render(
 	<Route exact path='/' component={App} />
 	<Route path='/login' component={Login} />
 	<Route path='/register' component={Register} />
+        <Route path='/about' component={About} />
+        <Route path='/donate' component={Donate} />
 	<PrivateRoute path='/course/:cid' component={Course} />
         <PrivateRoute path='/addPhone/:cid' component={AddPhone} />
         <PrivateRoute path='/dashboard' component={Dashboard} />

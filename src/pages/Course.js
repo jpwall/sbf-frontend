@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import CourseTable from './../components/CourseTable';
 import Header from './../components/Header';
+import Footer from './../components/Footer';
 import axios from 'axios';
 import authenticationService from './../authHelpers/AuthenticationService';
 import { handleResponse } from './../authHelpers/HandleResponse';
@@ -118,6 +119,7 @@ class Course extends Component {
                       <CourseTable rowData={this.state.rowData} />
                     </div>
                   </div>
+                  <Footer />
                 </React.Fragment>
 	    );
         }

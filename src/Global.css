@@ -27,6 +27,18 @@ input {
     padding: 5px;
 }
 
+footer {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background: #a9f5fc;
+    box-sizing: border-box;
+    padding: 2px;
+}
+
 .logo {
     font-family: 'Permanent Marker', cursive;
     color: black;
@@ -55,7 +67,12 @@ input {
 
 .primaryContainer {
     width: 100%;
-    height: auto;
+    min-height: 100vh;
+    margin-bottom: -30px;
+    padding-bottom: 30px;
+    margin-top: -60px;
+    padding-top: 60px;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
 }
@@ -65,6 +82,10 @@ input {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#internalOverride {
+    align-items: flex-start;
 }
 
 table {

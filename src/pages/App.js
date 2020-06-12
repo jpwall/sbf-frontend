@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import authenticationService from './../authHelpers/AuthenticationService';
 import SearchFiltering from './../components/SearchFiltering';
 import Header from './../components/Header';
+import Footer from './../components/Footer';
 import './../Global.css';
 
 const apiUrl = 'http://localhost:80';
@@ -37,6 +38,7 @@ class App extends Component {
                       <SearchFiltering />
                     </div>
                   </div>
+                  <Footer />
                 </React.Fragment>
 	    );
 	}

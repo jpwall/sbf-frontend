@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './../components/Header';
+import Footer from './../components/Footer';
 import authenticationService from './../authHelpers/AuthenticationService';
 import { handleResponse } from './../authHelpers/HandleResponse';
 
@@ -103,6 +104,7 @@ class Dashboard extends Component {
                   {userCourses}
                 </div>
               </div>
+              <Footer />
             </React.Fragment>
         );
     }
