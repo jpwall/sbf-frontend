@@ -20,12 +20,12 @@ class Header extends Component {
         if (isLoggedIn) {
             rightSide = (<div className="rightSideHeader">
                            <a href="/dashboard"><div className="button">Your Courses</div></a>
-                           <a href="/" onClick={() => { authenticationService.logout() }} className="button">Logout</a>
+                           <a href="/" onClick={() => { authenticationService.logout() }} className="button" id="black">Logout</a>
                          </div>);
         } else {
             rightSide = (<div className="rightSideHeader">
                            <a href="/login"><div className="button">Login</div></a>
-                           <a href="/register"><div className="button">Register</div></a>
+                           <a href="/register"><div className="button" id="purple">Register</div></a>
                          </div>);
         }
         return (

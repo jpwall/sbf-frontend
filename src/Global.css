@@ -24,12 +24,15 @@ input {
     justify-content: space-between;
     background: #a9f5fc;
     box-sizing: border-box;
+    padding: 5px;
 }
 
 .logo {
     font-family: 'Permanent Marker', cursive;
     color: black;
     font-size: 40px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .menuButton {
@@ -39,18 +42,6 @@ input {
 .rightSideHeader {
     display: flex;
     flex-direction: row;
-}
-
-.button {
-    background: black;
-    color: white;
-    box-sizing: border-box;
-    border: black;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 2px;
-    padding: 10px;
-    margin-left: 10px;
 }
 
 .searchFiltering {
@@ -99,7 +90,7 @@ Form {
     height: auto;
     display: flex;
     flex-direction: column;
-    align-items: first firstbaseline;
+    align-items: center;
 }
 
 .form-group {
@@ -110,7 +101,7 @@ Form {
     align-self: center;
 }
 
-button {
+button, .button {
     text-align: center;
     text-decoration: none;
     font-size: 14px;
@@ -121,6 +112,8 @@ button {
     border: black;
     border-style: solid;
     border-width: 2px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .button-alt {
@@ -134,6 +127,8 @@ button {
     border: black;
     border-style: solid;
     border-width: 2px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 #red {
@@ -142,4 +137,9 @@ button {
 
 #purple {
     background: #eabffc;
+}
+
+#black {
+    background: black;
+    color: white;
 }

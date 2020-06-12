@@ -67,7 +67,7 @@ class Login extends React.Component {
                         </Form>
                     )}
                 />
-		<a className="button-alt" href="/register">Or Create an Account</a>
+		<a className="button-alt" href="/register">Register</a>
             </div>
         );
     }
