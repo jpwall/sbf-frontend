@@ -27,19 +27,20 @@ class Register extends React.Component {
     render() {
         return (
             <div className="fullPageContainer">
-              <div className="logo">STUDIUS</div>
+              <img src={process.env.PUBLIC_URL + '/logo_normal.png'} height="80px"/>
               <Formik
                 initialValues={{
                     name: '',
-		    email: '',
+		    username: '',
                     phone: '',
                     password: ''
                 }}
                 validationSchema={Yup.object().shape({
                     name: Yup.string()
                         .required('Full Name is required'),
-		    email: Yup.string()
-			.email('Please enter a valid email')
+		    username: Yup.string()
+                        .min(1, 'Username must be at least 1 character long')
+                        .max(25, 'Username must be shorter than 25 characters long')
 			.required('Email is required'),
                     phone: Yup.string()
                         .test('Phone test',
@@ -48,14 +49,15 @@ class Register extends React.Component {
                         .required('Phone is required'),
                     password: Yup.string()
 			.min(8, 'Password must be at least 8 characters')
+                        .max(25, 'Password must be shorter than 25 characters long')
 			.required('Password is required'),
 		    confirmPass: Yup.string()
 			.oneOf([Yup.ref('password'), null], 'Passwords must match')
 			.required('Confirm password is required')
                 })}
-                onSubmit={({ name, email, phone, password }, { setStatus, setSubmitting }) => {
+                onSubmit={({ name, username, phone, password }, { setStatus, setSubmitting }) => {
                     setStatus();
-                    authenticationService.register(name, email, phone, password)
+                    authenticationService.register(name, username, phone, password)
                         .then(
                             user => {
                                 const { from } = this.props.location.state || { from: { pathname: "/" } };
@@ -75,9 +77,9 @@ class Register extends React.Component {
                         <ErrorMessage name="name" component="div" className="invalid-feedback" />
 		      </div>
                       <div className="form-group">
-                        <label htmlFor="email">Email </label>
-                        <Field name="email" type="email" className={'form-control' + (errors.email && touched.email ? ' is-invalid' : '')} />
-                        <ErrorMessage name="email" component="div" className="invalid-feedback" />
+                        <label htmlFor="username">Username </label>
+                        <Field name="username" type="username" className={'form-control' + (errors.username && touched.username ? ' is-invalid' : '')} />
+                        <ErrorMessage name="username" component="div" className="invalid-feedback" />
                       </div>
                       <div className="form-group">
                         <label htmlFor="phone">Phone (For SMS Messages)</label>

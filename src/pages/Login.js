@@ -17,21 +17,20 @@ class Login extends React.Component {
     render() {
         return (
             <div className="fullPageContainer">
-                <div className="logo">STUDIUS</div>
+              <img src={process.env.PUBLIC_URL + '/logo_normal.png'} height="80px"/>
                 <Formik
                     initialValues={{
-                        email: '',
+                        username: '',
                         password: ''
                     }}
                     validationSchema={Yup.object().shape({
-                        email: Yup.string()
-			    .email('Please enter a valid email')
-			    .required('Email is required'),
+                        username: Yup.string()
+			    .required('Username is required'),
                         password: Yup.string().required('Password is required')
                     })}
-                    onSubmit={({ email, password }, { setStatus, setSubmitting }) => {
+                    onSubmit={({ username, password }, { setStatus, setSubmitting }) => {
                         setStatus();
-                        authenticationService.login(email, password)
+                        authenticationService.login(username, password)
                             .then(
                                 user => {
                                     const { from } = this.props.location.state || { from: { pathname: "/" } };
@@ -46,9 +45,9 @@ class Login extends React.Component {
                     render={({ errors, status, touched, isSubmitting }) => (
                         <Form>
                             <div className="form-group">
-                              <label htmlFor="email">Email </label>
-                                <Field name="email" type="text" className={'form-control' + (errors.email && touched.email ? ' is-invalid' : '')} />
-                                <ErrorMessage name="email" component="div" className="invalid-feedback" />
+                              <label htmlFor="username">Username </label>
+                                <Field name="username" type="text" className={'form-control' + (errors.username && touched.username ? ' is-invalid' : '')} />
+                                <ErrorMessage name="username" component="div" className="invalid-feedback" />
                             </div>
                             <div className="form-group">
                               <label htmlFor="password">Password </label>

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import authenticationService from './../authHelpers/AuthenticationService';
 import SearchFiltering from './../components/SearchFiltering';
 import Header from './../components/Header';
+import BLM from './../components/BLM';
 import Footer from './../components/Footer';
 import './../Global.css';
 
@@ -31,8 +32,9 @@ class App extends Component {
 	} else {
 	    return (
                 <React.Fragment>
+                  <BLM />
                   <Header currentUser={this.state.currentUser} />
-                  <div className="primaryContainer">
+                  <div style={{ marginTop:'-80px', paddingTop:'80px;' }} className="primaryContainer">
                     <div className="searchFiltering">
                       <h1>Find a study buddy in your class!</h1>
                       <SearchFiltering />

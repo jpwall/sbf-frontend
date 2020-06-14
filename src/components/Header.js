@@ -30,7 +30,7 @@ class Header extends Component {
         }
         return (
             <div className="header">
-              <a href="/"><div className="logo">STUDIUS</div></a>
+              <a href="/"><img src={process.env.PUBLIC_URL + '/logo_normal.png'} height="60px"/></a>
               {rightSide}
             </div>
         );

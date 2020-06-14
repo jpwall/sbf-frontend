@@ -16,11 +16,11 @@ export const authenticationService = {
     get currentUserValue () { return currentUserSubject.value }
 };
 
-function login(email, password) {
+function login(username, password) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ username, password })
     };
 
     return fetch(`http://localhost:80/api/users/authenticate`, requestOptions)
@@ -33,12 +33,12 @@ function login(email, password) {
         });
 }
 
-function register(name, email, phone, password) {
+function register(name, username, phone, password) {
     phone = parseInt(phone.substring(1));
     const requestOptions = {
 	method: 'POST',
 	headers: { 'Content-type': 'application/json' },
-	body: JSON.stringify({ name, email, password, phone})
+	body: JSON.stringify({ name, username, password, phone})
     };
     return fetch('http://localhost:80/api/users/register', requestOptions)
 	.then(handleResponse)
