@@ -23,18 +23,27 @@ class Login extends React.Component {
                         username: '',
                         password: ''
                     }}
-                    validationSchema={Yup.object().shape({
-                        username: Yup.string()
-			    .required('Username is required'),
-                        password: Yup.string().required('Password is required')
+                  validationSchema={Yup.object().shape({
+                      username: Yup.string()
+                          .min(1, 'Username must be at least 1 character long')
+                          .max(25, 'Username must be shorter than 25 characters long')
+			  .required('Username is required'),
+                      password: Yup.string()
+			  .min(8, 'Password must be at least 8 characters')
+                          .max(25, 'Password must be shorter than 25 characters long')
+                          .required('Password is required')
                     })}
                     onSubmit={({ username, password }, { setStatus, setSubmitting }) => {
                         setStatus();
                         authenticationService.login(username, password)
                             .then(
                                 user => {
-                                    const { from } = this.props.location.state || { from: { pathname: "/" } };
-                                    this.props.history.push(from);
+                                    if (user.user.verified) {
+                                        const { from } = this.props.location.state || { from: { pathname: "/" } };
+                                        this.props.history.push(from);
+                                    } else {
+                                        this.props.history.push("/verify");
+                                    }
                                 },
                                 error => {
                                     setSubmitting(false);

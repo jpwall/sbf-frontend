@@ -60,8 +60,7 @@ class Register extends React.Component {
                     authenticationService.register(name, username, phone, password)
                         .then(
                             user => {
-                                const { from } = this.props.location.state || { from: { pathname: "/" } };
-                                this.props.history.push(from);
+                                this.props.history.push("/login");
                             },
                             error => {
                                 setSubmitting(false);
