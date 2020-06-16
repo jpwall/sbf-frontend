@@ -43,7 +43,6 @@ function register(name, username, phone, password) {
     return fetch('http://localhost:80/api/users/register', requestOptions)
 	.then(handleResponse)
 	.then(user => {
-	    currentUserSubject.next(user);
 	    return user;
 	});
 }
