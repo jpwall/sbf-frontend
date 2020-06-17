@@ -24,7 +24,7 @@ class Verify extends React.Component {
             },
             body: JSON.stringify({ phone })
         };
-        fetch('http://localhost:80/api/users/verifySend', requestOptions)
+        fetch(process.env.REACT_APP_API_URL + '/api/users/verifySend', requestOptions)
             .then(handleResponse);
     }
 
@@ -39,7 +39,7 @@ class Verify extends React.Component {
             },
             body: JSON.stringify({ phone, code })
         };
-        return fetch('http://localhost:80/api/users/verifyCheck', requestOptions)
+        return fetch(process.env.REACT_APP_API_URL + '/api/users/verifyCheck', requestOptions)
             .then(handleResponse)
             .then(data => {
                 return data;

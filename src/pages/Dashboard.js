@@ -39,7 +39,7 @@ class Dashboard extends Component {
             },
             body: JSON.stringify({ uid })
         };
-        fetch('http://localhost:80/api/preferences/userCourses', requestOptions)
+        fetch(process.env.REACT_APP_API_URL + '/api/preferences/userCourses', requestOptions)
             .then(handleResponse)
             .then(data => {
                 this.setState({
@@ -59,7 +59,7 @@ class Dashboard extends Component {
             },
             body: JSON.stringify({ uid, cid })
         };
-        return fetch('http://localhost:80/api/preferences/remove', requestOptions)
+        return fetch(process.env.REACT_APP_API_URL + '/api/preferences/remove', requestOptions)
             .then(handleResponse)
             .then(data => {
                 this.deleteRow(data.msg);

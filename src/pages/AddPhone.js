@@ -14,7 +14,7 @@ function submitPhone(uid, cid, minGrade, token) {
         },
         body: JSON.stringify({ uid, cid, minGrade })
     };
-    return fetch('http://localhost:80/api/preferences/add', requestOptions)
+    return fetch(process.env.REACT_APP_API_URL + '/api/preferences/add', requestOptions)
         .then(handleResponse)
         .then(data => {
             return data;
@@ -33,7 +33,7 @@ class AddPhone extends Component {
 
     componentDidMount() {
         const token = this.state.currentUser.token;
-        axios.get(`http://localhost:80/api/courses/get/?cid=${encodeURIComponent(this.props.match.params.cid)}`, { headers: { Authorization: token } })
+        axios.get(process.env.REACT_APP_API_URL + `/api/courses/get/?cid=${encodeURIComponent(this.props.match.params.cid)}`, { headers: { Authorization: token } })
             .then(res => {
                 this.setState({
                     courseName: res.data.subject_name

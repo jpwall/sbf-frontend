@@ -25,7 +25,7 @@ class About extends Component {
                   <p>In light of the COVID-19 pandemic, it's even more difficult to find study buddies. STUDIUS was initially inspired by the increased disconnect between peers from Zoom lectures.</p>
 
                   <h2>The Team:</h2>
-                  <p>STUDIUS is developed by UW students for UW students. It is currently being actively maintained by an HCDE major <span role="img" aria-label="emoji heart">❤</span> (and CS reject <span role="img" aria-label="emoji middle finger">🖕</span>), Jesse Walling, with intermittent help from other students. If you are interested in the project, feel free to <a href="/donate">donate</a> or <a href="mailto:jessephilipwalling@gmail.com?subject=STUDIUS interest:" target="_blank" rel="noopener noreferrer">email us</a> with how you would like to help!</p>
+                  <p>STUDIUS is developed by UW students for UW students. If you are interested in the project, feel free to <a href="/donate">donate</a> or <a href="mailto:jessephilipwalling@gmail.com?subject=STUDIUS interest:" target="_blank" rel="noopener noreferrer">email us</a> with how you would like to help!</p>
 
                   <h2>The Software:</h2>
                   <p>STUDIUS is powered by React, Express.js, JSON Web Tokens / Passport, and CSS Flexbox for the UI. If you find bugs or vulnerabilities (kudos if you can <span role="img" aria-label="emoji winking smiley face">😉</span>), please email <a href="mailto:jessephilipwalling@gmail.com?subject=STUDIUS bug / vulnerability:" target="_blank" rel="noopener noreferrer">support</a>.</p>
@@ -35,18 +35,16 @@ class About extends Component {
                   <p>Yes, but common sense ones:</p>
                   <ul>
                     <li>Be transparent. List the grade that you actually desire in the class!</li>
-                    <li>This site is for study buddy finding. It's not Tinder, sorry!</li>
-                    <li>Remove yourself from a class listing if you have a buddy / group that you are satisfied with.</li>
                     <li>Be yourself and have fun!</li>
                   </ul>
                   <h2>How is STUDIUS pronounced?</h2>
-                  <p>Like the correctly spelled english word, studious.</p>
+                  <p>Like the correctly spelled English word, studious.</p>
                   <h2>Why isn't there a built in chat to avoid using phone numbers?</h2>
                   <p>The current state of STUDIUS is a minimum viable product (MVP). It was much faster to implement lists of phone numbers for contact information. A built in chat service could be a feature in later versions.</p>
                   <h2>My friend goes to X university, is STUDIUS available for them?</h2>
                   <p>No, currently STUDIUS is intended for UW-Seattle students only. Expansion to other colleges is a long-term goal though!</p>
                   <h2>Is STUDIUS officially affiliated with UW?</h2>
-                  <p>NO <span role="img" aria-label="emoji devil horns smiling">😈</span> But, if UW is interested in a partnership of some sort, we might be open to it <span role="img" aria-label="emoji big eyes">👀</span></p>
+                  <p>No. This is a student developed project but has no official affiliation with the University of Washington at this time.</p>
                 </div>
               </div>
               <Footer />

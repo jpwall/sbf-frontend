@@ -23,7 +23,7 @@ class Course extends Component {
 
     getRowData() {
         const token = this.state.currentUser.token;
-        axios.get(`http://localhost:80/api/preferences/?cid=${encodeURIComponent(this.props.match.params.cid)}`, { headers: { Authorization: token } })
+        axios.get(process.env.REACT_APP_API_URL + `/api/preferences/?cid=${encodeURIComponent(this.props.match.params.cid)}`, { headers: { Authorization: token } })
             .then(res => {
                 this.setState({
                     isLoaded: true,
@@ -51,7 +51,7 @@ class Course extends Component {
         };
 
         this.getRowData();
-        axios.get(`http://localhost:80/api/courses/get/?cid=${encodeURIComponent(this.props.match.params.cid)}`, { headers: { Authorization: token } })
+        axios.get(process.env.REACT_APP_API_URL + `/api/courses/get/?cid=${encodeURIComponent(this.props.match.params.cid)}`, { headers: { Authorization: token } })
             .then(res => {
                 this.setState({
                     courseName: res.data.subject_name,
@@ -63,7 +63,7 @@ class Course extends Component {
                     err
                 });
             });
-        fetch('http://localhost:80/api/preferences/check', requestOptions)
+        fetch(process.env.REACT_APP_API_URL + '/api/preferences/check', requestOptions)
             .then(handleResponse)
             .then(data => {
                 var ret = false;
@@ -86,7 +86,7 @@ class Course extends Component {
             },
             body: JSON.stringify({ uid, cid })
         };
-        return fetch('http://localhost:80/api/preferences/remove', requestOptions)
+        return fetch(process.env.REACT_APP_API_URL + '/api/preferences/remove', requestOptions)
             .then(data => {
                 this.setState({
                     isUser: false

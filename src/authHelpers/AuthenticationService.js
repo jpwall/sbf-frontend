@@ -23,7 +23,7 @@ function login(username, password) {
         body: JSON.stringify({ username, password })
     };
 
-    return fetch(`http://localhost:80/api/users/authenticate`, requestOptions)
+    return fetch(process.env.REACT_APP_API_URL + `/api/users/authenticate`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -40,7 +40,7 @@ function register(name, username, phone, password) {
 	headers: { 'Content-type': 'application/json' },
 	body: JSON.stringify({ name, username, password, phone})
     };
-    return fetch('http://localhost:80/api/users/register', requestOptions)
+    return fetch(process.env.REACT_APP_API_URL + '/api/users/register', requestOptions)
 	.then(handleResponse)
 	.then(user => {
 	    return user;

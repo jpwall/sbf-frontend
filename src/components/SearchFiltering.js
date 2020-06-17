@@ -33,7 +33,7 @@ class SearchFiltering extends Component {
             body: JSON.stringify({ search })
         };
         
-        fetch('http://localhost:80/api/courses/search', requestOptions)
+        fetch(process.env.REACT_APP_API_URL + '/api/courses/search', requestOptions)
             .then(handleResponse)
             .then(data => {
                 this.setState({

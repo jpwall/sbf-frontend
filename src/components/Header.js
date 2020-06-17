@@ -19,7 +19,7 @@ class Header extends Component {
         let rightSide;
         if (isLoggedIn) {
             rightSide = (<div className="rightSideHeader">
-                           <a href="/dashboard"><div className="button">Your Courses</div></a>
+                           <a href="/dashboard"><div className="button">My Courses</div></a>
                            <a href="/" onClick={() => { authenticationService.logout() }} className="button" id="black">Logout</a>
                          </div>);
         } else {
