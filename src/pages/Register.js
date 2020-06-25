@@ -81,7 +81,7 @@ class Register extends React.Component {
                         <ErrorMessage name="username" component="div" className="invalid-feedback" />
                       </div>
                       <div className="form-group">
-                        <label htmlFor="phone">Phone (For SMS Messages)</label>
+                        <label htmlFor="phone">Phone (For SMS Contact)</label>
                         <PhoneInputField ref={ref} name="phone" type="text" onChange={e => {
                             setFieldValue("phone", e);
                             touched.phone = true;
