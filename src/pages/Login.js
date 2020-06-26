@@ -17,7 +17,7 @@ class Login extends React.Component {
     render() {
         return (
             <div className="fullPageContainer">
-              <img src={process.env.PUBLIC_URL + '/logo_normal.png'} height="80px"/>
+              <a href="/"><img src={process.env.PUBLIC_URL + '/logo_normal.png'} height="80px"/></a>
                 <Formik
                     initialValues={{
                         username: '',
