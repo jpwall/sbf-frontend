@@ -11,6 +11,7 @@ class CourseTable extends Component {
               <thead>
                 <tr>
                   <th>Name</th>
+                  <th>Role</th>
                   <th>Phone</th>
                   <th>Mininum Desired Grade</th>
                 </tr>
@@ -20,6 +21,7 @@ class CourseTable extends Component {
                     this.props.rowData.map((user) =>
                               <tr key={user.uid.toString()}>
                                 <td>{user.full_name}</td>
+                                <td>{user.course_role}</td>
                                 <td>{user.phone_number}</td>
                                 <td>{user.min_grade}</td>
                               </tr>

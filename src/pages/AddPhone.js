@@ -5,7 +5,7 @@ import { handleResponse } from './../authHelpers/HandleResponse';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-function submitPhone(uid, cid, minGrade, token) {
+function submitPhone(uid, cid, minGrade, courseRole, token) {
     const requestOptions = {
         method: 'POST',
         headers: {
@@ -51,14 +51,15 @@ class AddPhone extends Component {
               <h2>Add me as a study buddy to {this.state.courseName}!</h2>
               <Formik
                 initialValues={{
-                    grade: ''
+                    grade: '',
+                    role: ''
                 }}
                 validationSchema={Yup.object().shape({
                     grade: Yup.number().min(0.0, 'Please enter a grade above 0.0').max(4.0, 'Please enter a grade at or below a 4.0').required('Please enter a grade between 0.0 and 4.0')
                 })}
-                onSubmit={({ grade }, { setStatus, setSubmitting }) => {
+                onSubmit={({ grade, role }, { setStatus, setSubmitting }) => {
                     setStatus();
-                    submitPhone(this.state.currentUser.user.uid, this.props.match.params.cid, grade, this.state.currentUser.token)
+                    submitPhone(this.state.currentUser.user.uid, this.props.match.params.cid, grade, role, this.state.currentUser.token)
                     .then(
                         data => {
                             var curpath = "/course/" + this.props.match.params.cid;
@@ -77,6 +78,15 @@ class AddPhone extends Component {
                         <label htmlFor="grade">My desired minimum grade is: </label>
                         <Field name="grade" type="text" className={'form-control' + (errors.grade && touched.grade ? ' is-invalid' : '')} />
                         <ErrorMessage name="grade" component="div" className="invalid-feedback" />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="role">I am a: </label>
+                        <select name="role" type="select" className={'form-control' + (errors.role && touched.role ? ' is-invalid' : '')}>
+                          <option value="0">Student</option>
+                          <option value="1">TA</option>
+                          <option value="2">Tutor</option>
+                        </select>
+                        <ErrorMessage name="role" component="div" className="invalid-feedback" />
                       </div>
                       <div className="form-group" id="form-end">
                         <button type="submit" className="btn btn-primary" disabled={isSubmitting}>List me!</button>
