@@ -48,7 +48,7 @@ class SearchFiltering extends Component {
         return (
             <React.Fragment>
               <form>
-                <input style={{ width:'300px' }} className="caps" type="text" placeholder="Start typing (and keep typing) to search courses..." onChange={e => this.updateSearch(e.target.value)} />
+                <input className="caps" type="text" placeholder="Start typing to search courses..." onChange={e => this.updateSearch(e.target.value)} />
               </form>
               <div>
                 {
